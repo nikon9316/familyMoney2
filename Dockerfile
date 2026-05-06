@@ -15,4 +15,4 @@ RUN python -m pip install --upgrade pip && python -m pip install -r requirements
 
 COPY . .
 
-CMD ["sh", "-c", "alembic upgrade head && exec python -u main.py"]
+CMD ["sh", "-c", "echo START_CMD_RUNNING && alembic upgrade head && echo ALEMBIC_DONE && exec python -u main.py"]
