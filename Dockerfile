@@ -15,4 +15,4 @@ RUN python -m pip install --upgrade pip && python -m pip install -r requirements
 
 COPY . .
 
-CMD ["python", "main.py"]
+CMD ["sh", "-c", "alembic upgrade head && exec python -u main.py"]
