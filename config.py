@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "")
-ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
+BOT_TOKEN = os.getenv("BOT_TOKEN", "7426821545:AAH5KO9Wh26Xangma5DhXQfVjMkoi-uOdIc")
+ADMIN_ID = int(os.getenv("ADMIN_ID", "45041971"))
 
 BASE_PUBLIC_URL = os.getenv("BASE_PUBLIC_URL", "http://localhost:8080").rstrip("/")
 WEBAPP_URL = f"{BASE_PUBLIC_URL}/webapp/index.html"
