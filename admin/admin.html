@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Finance Admin 5.5.4</title>
+  <link rel="stylesheet" href="/admin/static/admin.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <p>Production dashboard</p>
+      <h1>Family Finance Admin 5.5.4</h1>
+      <small id="sessionStatus">Session auth + CSRF enabled</small>
+    </div>
+    <div class="login">
+      <input id="token" type="password" placeholder="ADMIN_PANEL_TOKEN" autocomplete="off">
+      <input id="superToken" type="password" placeholder="SUPERADMIN_TOKEN для restore" autocomplete="off">
+      <button id="loginAdminBtn">Войти</button>
+      <button id="logoutAdminBtn" class="ghost">Выйти</button>
+    </div>
+  </header>
+
+  <section class="cards" id="stats"></section>
+
+  <section class="grid2">
+    <div class="panel">
+      <div class="panel-head"><h2>Движение денег, 30 дней</h2></div>
+      <canvas id="moneyChart" height="170"></canvas>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><h2>Активность, 30 дней</h2></div>
+      <canvas id="activityChart" height="170"></canvas>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Семьи</h2><span class="hint">Детальная карточка + операции семьи</span></div>
+    <div id="families"></div>
+    <div id="familyDetail" class="detail"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Пользователи, роли и блокировка</h2></div>
+    <div id="users"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Backups</h2><button id="createBackupBtn">Создать backup</button></div>
+    <div class="restore-box">
+      <h3>Restore только для superadmin</h3>
+      <button id="requestRestoreCodeBtn">Отправить OTP в Telegram superadmin</button>
+      <input id="restoreOtp" placeholder="OTP из Telegram" autocomplete="one-time-code">
+      <input type="file" id="restoreFile">
+      <button id="restoreBackupBtn" class="danger">Восстановить backup</button>
+      <p class="hint">Restore требует superadmin session, CSRF, maintenance mode и одноразовый код из Telegram.</p>
+    </div>
+    <div id="backups"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Admin audit log</h2><button id="exportAuditLogsBtn">Экспорт audit logs</button></div>
+    <div class="filters">
+      <input id="auditAction" placeholder="action">
+      <input id="auditEntity" placeholder="entity_type">
+      <input id="auditFrom" type="date">
+      <input id="auditTo" type="date">
+      <button id="adminFilterBtn">Фильтр</button>
+    </div>
+    <div id="adminAudit"></div>
+  </section>
+</div>
+<script src="/admin/static/admin.js"></script>
+</body>
+</html>
