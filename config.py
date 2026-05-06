@@ -10,7 +10,7 @@ BASE_PUBLIC_URL = os.getenv("BASE_PUBLIC_URL", "https://familymoney2-production.
 WEBAPP_URL = f"{BASE_PUBLIC_URL}/webapp/index.html"
 
 WEB_HOST = os.getenv("WEB_HOST", "0.0.0.0")
-WEB_PORT = int(os.getenv("PORT", os.getenv("WEB_PORT", "8080")))
+WEB_PORT = int(os.getenv("PORT") or os.getenv("WEB_PORT", "8080"))
 
 # Local: sqlite:///family_finance.db
 # Railway PostgreSQL: postgresql+psycopg://USER:PASSWORD@HOST:PORT/DBNAME
