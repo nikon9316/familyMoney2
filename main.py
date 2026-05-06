@@ -19,8 +19,10 @@ async def start_web_server():
     app = create_web_app()
     runner = web.AppRunner(app)
     await runner.setup()
+    print(f"STARTING WEB SERVER ON {WEB_HOST}:{WEB_PORT}", flush=True)
     site = web.TCPSite(runner, WEB_HOST, WEB_PORT)
     await site.start()
+    print(f"WEB SERVER STARTED ON {WEB_HOST}:{WEB_PORT}", flush=True)
     logger.info('WebApp started on http://%s:%s', WEB_HOST, WEB_PORT)
 
 async def reminder_worker(bot: Bot):
