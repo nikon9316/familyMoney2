@@ -77,3 +77,16 @@ textarea{width:100%;min-height:80px;border:1px solid #d0d5dd;border-radius:14px;
 .tiny-btn { border: 1px solid rgba(37, 99, 235, .25); background: #fff; border-radius: 10px; padding: 6px 9px; font-size: 12px; cursor: pointer; }
 .tiny-btn:hover { background: rgba(37, 99, 235, .08); }
 .ok-line { border-color: rgba(22, 163, 74, .30) !important; background: rgba(22, 163, 74, .06) !important; }
+
+/* Input text contrast: make typed text distinct from placeholder */
+input, select, textarea { color: var(--ff-ink); -webkit-text-fill-color: var(--ff-ink); }
+input::placeholder, textarea::placeholder { color: var(--ff-muted); opacity: 1; }
+input:disabled, select:disabled, textarea:disabled { color: rgba(15, 23, 42, .55); -webkit-text-fill-color: rgba(15, 23, 42, .55); }
+
+/* Focus highlight */
+input:focus, select:focus, textarea:focus{
+  background: rgba(29, 78, 216, .04);
+  border-color: var(--ff-blue);
+  box-shadow: 0 0 0 4px var(--ff-ring), 0 10px 26px rgba(29, 78, 216, .12);
+  caret-color: var(--ff-blue);
+}
