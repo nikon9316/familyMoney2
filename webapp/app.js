@@ -26,6 +26,13 @@
   const authHeaders = () => ({ 'X-Telegram-Init-Data': initData() });
   const idem = () => `${Date.now()}-${Math.random().toString(16).slice(2)}-${crypto?.randomUUID?.() || ''}`;
 
+  function syncCurrencyWithWallet() {
+    const walletId = val('wallet') || state.data?.wallets?.[0]?.id;
+    const cur = walletCurrency(walletId, val('currency') || 'UZS');
+    const curEl = $('currency');
+    if (curEl && cur) curEl.value = cur;
+  }
+
   function toast(message, type = 'ok') {
     const root = $('toastRoot');
     if (!root) return alert(message);
@@ -199,6 +206,7 @@
     fillSelect('scheduleWallet', wallets, (w) => `${w.name} — ${fmt(w.balance)} ${w.currency}`, (w) => w.id, { label: 'Кошелек для автосписания', value: '' });
     fillSelect('scheduleCategory', d.expense_categories || [], (c) => c.display_name || c.name, (c) => c.id, { label: 'Категория расхода', value: '' });
     fillSelect('aiRuleCategory', d.expense_categories || [], (c) => c.display_name || c.name, (c) => c.id, { label: 'Категория (для правила)', value: '' });
+    syncCurrencyWithWallet();
   }
 
   function renderWallets(wallets) {
@@ -820,6 +828,7 @@
     $$('[data-page]').forEach((b) => b.addEventListener('click', () => showPage(b.dataset.page)));
     bind('incomeBtn', 'click', () => { state.txType = 'income'; $('incomeBtn')?.classList.add('active'); $('expenseBtn')?.classList.remove('active'); renderSelects(state.data || {}); });
     bind('expenseBtn', 'click', () => { state.txType = 'expense'; $('expenseBtn')?.classList.add('active'); $('incomeBtn')?.classList.remove('active'); renderSelects(state.data || {}); });
+    bind('wallet', 'change', () => syncCurrencyWithWallet());
     bind('saveTransactionBtn', 'click', () => withBusy('saveTransactionBtn', saveTransaction));
     bind('saveTransferBtn', 'click', () => withBusy('saveTransferBtn', saveTransfer));
     bind('saveQuickExpenseBtn', 'click', () => withBusy('saveQuickExpenseBtn', saveQuickExpense));
